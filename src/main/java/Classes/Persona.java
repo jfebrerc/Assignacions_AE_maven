@@ -2,6 +2,8 @@
 
 package Classes;
 
+import Biblioteques.Auxiliar;
+
 public class Persona {
     
     /* Atributs */
@@ -44,9 +46,9 @@ public class Persona {
         tipusDocument=tipusDocumentc;
         sexe=sexec;
         telefon=telefonc;
-        idRol=idRolc;
+        idRol="2";
         dataCreacioRegistre=dataCreacioRegistrec;
-        hash=hashc;
+        hash=Auxiliar.generarHash();
         passwd = passwdc;
     }
 

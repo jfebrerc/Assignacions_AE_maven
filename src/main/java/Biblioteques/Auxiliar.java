@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.TimeZone;
+import java.util.stream.Collectors;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import org.mindrot.jbcrypt.*;
@@ -321,7 +322,7 @@ public class Auxiliar {
         for (int i=0; i<TEST;i++){
             String hashed = BCrypt.hashpw("alumne"+(i+1), BCrypt.gensalt());
             Arrays.arrayPersones.add(new Empleat("nom"+(i+1),"cognom"+(i+1),"cognom2"+(i+1),"dni"+(i+1),hashed,"email"+(i+1),"dataNaixement"+(i+1),"adreça"+(i+1), 
-                    "ciutat"+(i+1),"provincia"+(i+1),"codiPostal"+(i+1),"tipDoc"+(i+1),"sexe"+(i+1),"telefon"+(i+1),"idRol"+(i+1),"dataCreacio"+(i+1),"hash"+(i+1),
+                    "ciutat"+(i+1),"provincia"+(i+1),"codiPostal"+(i+1),"tipDoc"+(i+1),"sexe"+(i+1),"telefon"+(i+1),"idRol"+(i+1),"dataCreacio"+(i+1),generarHash(),
                     "nomina"+(i+1),"iban"+(i+1),"horari"+(i+1)));
             //IO.imprimirTI(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getPasswd());
             
@@ -422,4 +423,14 @@ public class Auxiliar {
         }
         return seleccio_atraccio;
     }
+        public static String generarHash(){
+            int length = 32;
+            String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                         + "abcdefghijklmnopqrstuvwxyz"
+                         + "0123456789";
+            String str = new Random().ints(length, 0, chars.length())
+                                     .mapToObj(i -> "" + chars.charAt(i))
+                                     .collect(Collectors.joining());
+            return str;
+        }
 }

@@ -20,7 +20,9 @@ import java.awt.Font;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.charset.Charset;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  *
