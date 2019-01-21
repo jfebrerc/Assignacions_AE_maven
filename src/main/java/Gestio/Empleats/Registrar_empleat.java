@@ -17,7 +17,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.io.IOException;
-import org.mindrot.jbcrypt.*;
 /**
  *
  * @author Usuari
@@ -453,17 +452,16 @@ public class Registrar_empleat extends javax.swing.JFrame {
 
     private void REGISTRARButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGISTRARButtonActionPerformed
         String idRol="2";
-        String hash=Auxiliar.generarHash();
+        String hash="";
         if (nomText.getText().isEmpty() || cognomnsText.getText().isEmpty() || dniText.getText().isEmpty() || nominaText.getText().isEmpty()){
                     JOptionPane.showMessageDialog(this, "Error: Hi ha algun camp per a omplir");
                     IO.imprimirTI("Se ha intentat registrar un empleat en algun camp buit");
                 }else {
                     try {
-                        Arrays.arrayPersones.add(new Empleat(nomText.getText(), cognomnsText.getText(),segonCognom.getText(),dniText.getText(),BCrypt.hashpw(password.getText(), BCrypt.gensalt()),email.getText(),
+                        Arrays.arrayPersones.add(new Empleat(nomText.getText(), cognomnsText.getText(),segonCognom.getText(),dniText.getText(),password.getText(),email.getText(),
                         dataNaixement.getText(),adreca.getText(),ciutat.getText(),provincia.getText(),codiPostal.getText(),tipusDocument.getSelectedItem().toString(),sexe.getSelectedItem().toString(),telefon.getText(),
                         idRol,dataCreacioContracte.getText(),hash,nominaText.getText(),iban.getText(),Horari.getName()));
-                        IO.imprimirTI(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getPasswd());
-                        IO.imprimirTI(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getHash());
+                        IO.imprimirTI(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).toString());
                         IO.imprimirTI("Se ha registrat un empleat");
                         JOptionPane.showMessageDialog(this, "Se ha donat de alta correctament a " + ((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getNom());
                         Auxiliar.log("Empleat registrat: " + ((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getNom() + " " + ((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getCognom1() + " " + ((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getDNI());

@@ -20,17 +20,17 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.TimeZone;
-import java.util.stream.Collectors;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-import org.mindrot.jbcrypt.*;
-    
+
+
 public class Auxiliar {
     public static String path = "E:\\Carpetes\\Desktop\\";
     public static final int TEST = 100;
@@ -320,12 +320,9 @@ public class Auxiliar {
     
     public static void generarEmpleats(){
         for (int i=0; i<TEST;i++){
-            String hashed = BCrypt.hashpw("alumne"+(i+1), BCrypt.gensalt());
-            Arrays.arrayPersones.add(new Empleat("nom"+(i+1),"cognom"+(i+1),"cognom2"+(i+1),"dni"+(i+1),hashed,"email"+(i+1),"dataNaixement"+(i+1),"adreça"+(i+1), 
-                    "ciutat"+(i+1),"provincia"+(i+1),"codiPostal"+(i+1),"tipDoc"+(i+1),"sexe"+(i+1),"telefon"+(i+1),"idRol"+(i+1),"dataCreacio"+(i+1),generarHash(),
+            Arrays.arrayPersones.add(new Empleat("nom"+(i+1),"cognom"+(i+1),"cognom2"+(i+1),"dni"+(i+1),"passw"+(i+1),"email"+(i+1),"dataNaixement"+(i+1),"adreça"+(i+1), 
+                    "ciutat"+(i+1),"provincia"+(i+1),"codiPostal"+(i+1),"tipDoc"+(i+1),"sexe"+(i+1),"telefon"+(i+1),"idRol"+(i+1),"dataCreacio"+(i+1),"hash"+(i+1),
                     "nomina"+(i+1),"iban"+(i+1),"horari"+(i+1)));
-            //IO.imprimirTI(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getPasswd());
-            
         }
     }
     
@@ -423,14 +420,25 @@ public class Auxiliar {
         }
         return seleccio_atraccio;
     }
-        public static String generarHash(){
-            int length = 32;
-            String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                         + "abcdefghijklmnopqrstuvwxyz"
-                         + "0123456789";
-            String str = new Random().ints(length, 0, chars.length())
-                                     .mapToObj(i -> "" + chars.charAt(i))
-                                     .collect(Collectors.joining());
-            return str;
+            
+    public static void generarCSV(){
+        try {
+            //BufferedWriter out = null;
+            //out = new BufferedWriter(new FileWriter("/home/alumne/Escritorio/github/validacio_tickets/empleats.csv"));
+            PrintStream writer = new PrintStream("/home/alumne/Escritorio/Assignacions_AE/empleats.csv");
+            Iterator<Persona> iteratorPerso = Arrays.arrayPersones.iterator();
+                while(iteratorPerso.hasNext()){
+                  Persona persona_aux = iteratorPerso.next();
+                    writer.println(persona_aux.getId()+","+persona_aux.getNom()+","+persona_aux.getCognom2()+","
+                    +persona_aux.getDataNaixement()+","+persona_aux.getTipusDocument()+","+persona_aux.getTipusDocument()+","
+                    +persona_aux.getSexe()+","+persona_aux.getProvincia()+","+persona_aux.getCodiPostal()+","
+                    +persona_aux.getAdreca()+","+persona_aux.getCiutat()+","+persona_aux.getTelefon()+","
+                    +persona_aux.getEmail()+","+persona_aux.getHash());
+                }
+                writer.close();
+            
+        }catch(Exception e){
+            IO.imprimirT("Error la registrar logs: " + e);
         }
+    }
 }
