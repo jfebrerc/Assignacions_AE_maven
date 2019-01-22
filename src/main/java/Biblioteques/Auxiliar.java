@@ -27,13 +27,15 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.TimeZone;
+import java.util.stream.Collectors;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 public class Auxiliar {
     public static String path = "E:\\Carpetes\\Desktop\\";
-    public static final int TEST = 100;
+    public static final int TEST = 50;
     /** FUNCIO PER A LLISTAR ELS EMPLEATS */
     public static void llistar_empleats(JTextField textBusqueda, JList llistaEmpleats){
         String cerca = textBusqueda.getText();
@@ -320,15 +322,18 @@ public class Auxiliar {
     
     public static void generarEmpleats(){
         for (int i=0; i<TEST;i++){
-            Arrays.arrayPersones.add(new Empleat("nom"+(i+1),"cognom"+(i+1),"cognom2"+(i+1),"dni"+(i+1),"passw"+(i+1),"email"+(i+1),"dataNaixement"+(i+1),"adreça"+(i+1), 
-                    "ciutat"+(i+1),"provincia"+(i+1),"codiPostal"+(i+1),"tipDoc"+(i+1),"sexe"+(i+1),"telefon"+(i+1),"idRol"+(i+1),"dataCreacio"+(i+1),"hash"+(i+1),
+            String hashed = BCrypt.hashpw("alumne"+(i+1), BCrypt.gensalt());
+            Arrays.arrayPersones.add(new Empleat("nom"+(i+1),"cognom"+(i+1),"cognom2"+(i+1),"dni"+(i+1),hashed,"email"+(i+1),"dataNaixement"+(i+1),"adreça"+(i+1), 
+                    "ciutat"+(i+1),"provincia"+(i+1),"codiPostal"+(i+1),"tipDoc"+(i+1),"sexe"+(i+1),"telefon"+(i+1),"idRol"+(i+1),"dataCreacio"+(i+1),generarHash(),
                     "nomina"+(i+1),"iban"+(i+1),"horari"+(i+1)));
+            //IO.imprimirTI(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getPasswd());
+            
         }
     }
     
     public static void generarAssignacions(){
         Random rand = new Random();
-        for (int i=0; i<(TEST-50);i++){
+        for (int i=0; i<(TEST/2);i++){
             int data1 = rand.nextInt((31 - 1) + 1) + 1;
             int data2 = rand.nextInt((12 - 1) + 1) + 1;
             int data3 = rand.nextInt((3000 - 1000) + 1) + 1;
@@ -425,7 +430,7 @@ public class Auxiliar {
         try {
             //BufferedWriter out = null;
             //out = new BufferedWriter(new FileWriter("/home/alumne/Escritorio/github/validacio_tickets/empleats.csv"));
-            PrintStream writer = new PrintStream("/home/alumne/Escritorio/Assignacions_AE/empleats.csv");
+            PrintStream writer = new PrintStream("E:\\Carpetes\\Desktop\\empleats.csv");
             Iterator<Persona> iteratorPerso = Arrays.arrayPersones.iterator();
                 while(iteratorPerso.hasNext()){
                   Persona persona_aux = iteratorPerso.next();
@@ -441,4 +446,14 @@ public class Auxiliar {
             IO.imprimirT("Error la registrar logs: " + e);
         }
     }
+    public static String generarHash(){
+            int length = 32;
+            String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                         + "abcdefghijklmnopqrstuvwxyz"
+                         + "0123456789";
+            String str = new Random().ints(length, 0, chars.length())
+                                     .mapToObj(i -> "" + chars.charAt(i))
+                                     .collect(Collectors.joining());
+            return str;
+        }
 }
