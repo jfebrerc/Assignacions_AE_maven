@@ -100,8 +100,6 @@ public class Registrar_empleat extends javax.swing.JFrame {
         dataIniciContracte1 = new javax.swing.JFormattedTextField();
         jLabel23 = new javax.swing.JLabel();
         Horari = new javax.swing.JComboBox<>();
-        jLabel24 = new javax.swing.JLabel();
-        dataCreacioContracte = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -236,15 +234,6 @@ public class Registrar_empleat extends javax.swing.JFrame {
 
         Horari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mati", "Tarde", "Nit" }));
 
-        jLabel24.setText("Data creacio Registre");
-
-        dataCreacioContracte.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        dataCreacioContracte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataCreacioContracteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -325,21 +314,14 @@ public class Registrar_empleat extends javax.swing.JFrame {
                                         .addGap(12, 12, 12)
                                         .addComponent(jLabel22)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(dataFiContracte, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel24)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addComponent(dataFiContracte, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(147, 147, 147)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(sexe, javax.swing.GroupLayout.Alignment.LEADING, 0, 134, Short.MAX_VALUE)
-                                            .addComponent(segonCognom, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(18, 18, 18))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(dataCreacioContracte, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(sexe, javax.swing.GroupLayout.Alignment.LEADING, 0, 134, Short.MAX_VALUE)
+                                    .addComponent(segonCognom, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel12)
@@ -432,9 +414,7 @@ public class Registrar_empleat extends javax.swing.JFrame {
                     .addComponent(jLabel22)
                     .addComponent(dataIniciContracte1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23)
-                    .addComponent(Horari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24)
-                    .addComponent(dataCreacioContracte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Horari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ENREREButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -453,14 +433,14 @@ public class Registrar_empleat extends javax.swing.JFrame {
     private void REGISTRARButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGISTRARButtonActionPerformed
         String idRol="2";
         String hash="";
-        if (nomText.getText().isEmpty() || cognomnsText.getText().isEmpty() || dniText.getText().isEmpty() || nominaText.getText().isEmpty()){
+        if (nomText.getText().isEmpty() || cognomnsText.getText().isEmpty() || dniText.getText().isEmpty() || nominaText.getText().isEmpty() || segonCognom.getText().isEmpty() || email.getText().isEmpty() || adreca.getText().isEmpty() || ciutat.getText().isEmpty() || provincia.getText().isEmpty() || codiPostal.getText().isEmpty()|| css.getText().isEmpty()|| nominaText.getText().isEmpty()|| iban.getText().isEmpty()|| especialitat.getText().isEmpty()|| carrec.getText().isEmpty() || Horari.equals(null)){
                     JOptionPane.showMessageDialog(this, "Error: Hi ha algun camp per a omplir");
                     IO.imprimirTI("Se ha intentat registrar un empleat en algun camp buit");
                 }else {
                     try {
                         Arrays.arrayPersones.add(new Empleat(nomText.getText(), cognomnsText.getText(),segonCognom.getText(),dniText.getText(),password.getText(),email.getText(),
                         dataNaixement.getText(),adreca.getText(),ciutat.getText(),provincia.getText(),codiPostal.getText(),tipusDocument.getSelectedItem().toString(),sexe.getSelectedItem().toString(),telefon.getText(),
-                        idRol,dataCreacioContracte.getText(),hash,nominaText.getText(),iban.getText(),Horari.getName()));
+                        idRol,hash,nominaText.getText(),iban.getText(),Horari.getName()));
                         IO.imprimirTI(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).toString());
                         IO.imprimirTI("Se ha registrat un empleat");
                         JOptionPane.showMessageDialog(this, "Se ha donat de alta correctament a " + ((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getNom());
@@ -517,10 +497,6 @@ public class Registrar_empleat extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dataFiContracteActionPerformed
 
-    private void dataCreacioContracteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataCreacioContracteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataCreacioContracteActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -567,7 +543,6 @@ public class Registrar_empleat extends javax.swing.JFrame {
     private javax.swing.JTextField codiPostal;
     private javax.swing.JTextField cognomnsText;
     private javax.swing.JTextField css;
-    private javax.swing.JFormattedTextField dataCreacioContracte;
     private javax.swing.JFormattedTextField dataFiContracte;
     private javax.swing.JFormattedTextField dataIniciContracte1;
     private javax.swing.JFormattedTextField dataNaixement;
@@ -591,7 +566,6 @@ public class Registrar_empleat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

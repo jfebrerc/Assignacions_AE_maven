@@ -397,12 +397,13 @@ public class Gestionar_empleats extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
@@ -481,10 +482,15 @@ public class Gestionar_empleats extends javax.swing.JFrame {
                         String anticEmail=Arrays.arrayPersones.get(seleccio).getEmail();
                         String anticTelefon=Arrays.arrayPersones.get(seleccio).getTelefon();
                         String antigaNomina=((Empleat)Arrays.arrayPersones.get(seleccio)).getNomina();
+                        
+                        
                         Arrays.arrayPersones.get(seleccio).setNom(nomText.getText());
                         Arrays.arrayPersones.get(seleccio).setCognom1(cognomsText.getText());
                         Arrays.arrayPersones.get(seleccio).setDNI(dniText.getText());
                         ((Empleat)Arrays.arrayPersones.get(seleccio)).setNomina(nominaText.getText());
+                        //((Empleat)Arrays.arrayPersones.get(seleccio)).setNomina(css.getText());
+                        
+                        
                         Auxiliar.llistar_empleats_taula(textBusqueda, jTable1);
                         JOptionPane.showMessageDialog(this, "Empleat " + Arrays.arrayPersones.get(seleccio).getNom()  +  " modificat correctament");
                         Auxiliar.log("Empleat modificat: " + anticNom + " | " + anticCognom + " | " + anticNumDoc + " | " + antigaNomina + " | " + "\nA: " + Arrays.arrayPersones.get(seleccio).getNom() + " | " + Arrays.arrayPersones.get(seleccio).getCognom1() + " | "+ Arrays.arrayPersones.get(seleccio).getDNI() + " | "+ ((Empleat)Arrays.arrayPersones.get(seleccio)).getNomina());

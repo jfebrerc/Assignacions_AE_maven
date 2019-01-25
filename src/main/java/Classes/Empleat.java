@@ -16,10 +16,10 @@ public class Empleat extends Persona { //Comentaris al marge per als atributs
     private boolean assignat;
 
     public Empleat(String nomc, String cognom1c,String cognom2c, String dnic, String passwdc, String emailc, String dataNaixementc, String adrecac, String ciutatc, String provinciac, String codiPostalc,
-            String tipusDocumentc, String sexec, String telefonc, String idRolc, String dataCreacioRegistrec, String hashc, String nominac,String iban,String horari) {
+            String tipusDocumentc, String sexec, String telefonc, String idRolc, String hashc, String nominac,String iban,String horari) {
 
         super(nomc, cognom1c,cognom2c, dnic, passwdc, emailc, dataNaixementc, adrecac, ciutatc, provinciac, codiPostalc,
-                tipusDocumentc, sexec, telefonc, idRolc, dataCreacioRegistrec, hashc);
+                tipusDocumentc, sexec, telefonc, idRolc, hashc);
         nomina = nominac;
         assignat = false;
     }

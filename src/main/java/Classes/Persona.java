@@ -29,7 +29,7 @@ public class Persona {
 
     /** CONSTRUCTOR */
     public Persona(String nomc, String cognom1c,String cognom2c, String dnic, String passwdc, String emailc, String dataNaixementc, String adrecac, String ciutatc, String provinciac, String codiPostalc,
-                    String tipusDocumentc,String sexec,String telefonc,String idRolc,String dataCreacioRegistrec,String hashc) {
+                    String tipusDocumentc,String sexec,String telefonc,String idRolc,String hashc) {
         
         nom = nomc;
         cognom1= cognom1c;
@@ -47,7 +47,7 @@ public class Persona {
         sexe=sexec;
         telefon=telefonc;
         idRol="2";
-        dataCreacioRegistre=dataCreacioRegistrec;
+        dataCreacioRegistre=Auxiliar.dataActual();
         hash=Auxiliar.generarHash();
         passwd = passwdc;
     }
