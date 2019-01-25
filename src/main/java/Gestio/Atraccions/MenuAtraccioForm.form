@@ -31,15 +31,18 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="jButton4" alignment="2" min="-2" pref="196" max="-2" attributes="0"/>
-                          <Component id="jButton7" alignment="2" min="-2" pref="196" max="-2" attributes="0"/>
-                          <Component id="jButton6" alignment="2" min="-2" pref="196" max="-2" attributes="0"/>
-                          <Component id="jButton5" alignment="2" min="-2" pref="196" max="-2" attributes="0"/>
-                          <Component id="testButton" alignment="2" min="-2" pref="196" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jButton1" min="-2" pref="196" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="exportar" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="2" attributes="0">
+                              <Component id="jButton4" alignment="2" min="-2" pref="196" max="-2" attributes="0"/>
+                              <Component id="jButton7" alignment="2" min="-2" pref="196" max="-2" attributes="0"/>
+                              <Component id="jButton6" alignment="2" min="-2" pref="196" max="-2" attributes="0"/>
+                              <Component id="jButton5" alignment="2" min="-2" pref="196" max="-2" attributes="0"/>
+                              <Component id="testButton" alignment="2" min="-2" pref="196" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jButton1" min="-2" pref="196" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -63,9 +66,11 @@
               <Component id="jButton5" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="testButton" min="-2" pref="50" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="exportar" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" pref="48" max="-2" attributes="0"/>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -126,6 +131,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="testButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="exportar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Exportar a CSV"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exportarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -16,6 +16,7 @@ import Classes.Atraccio;
 import Classes.Empleat;
 import Classes.Persona;
 import com.toedter.calendar.JDateChooser;
+import java.io.File;
 
 import javax.swing.*;
 import java.io.FileWriter;
@@ -280,10 +281,23 @@ public class Auxiliar {
     public static void log(String s) {
         String currentTime = dataActual();
         try{
-            FileWriter aWriter = new FileWriter(path + "log.txt", true);
-            aWriter.write(currentTime + " - " + s + "\n");
-            aWriter.flush();
-            aWriter.close();
+            File arxiu = new File(path + "log.txt");
+            if (arxiu.exists()){
+                FileWriter aWriter = new FileWriter(path + "log.txt", true);
+                aWriter.write(currentTime + " - " + s + "\n");
+                aWriter.flush();
+                aWriter.close();
+            }else{
+                IO.imprimirTI("Funcionaelse?");
+                FileWriter aWriter = new FileWriter(path + "log.txt", true);
+                aWriter.write("------------------------------------------------------------------------------------------------------------------------------------------\n");
+                aWriter.write("---------------------------Arxiu dels logs de la gestio d'empleats, atraccions i assignacions---------------------------------------------\n");
+                aWriter.write("------------------------------------------------------------------------------------------------------------------------------------------\n\n\n");
+                aWriter.write(currentTime + " - " + s + "\n");
+                aWriter.flush();
+                aWriter.close();
+            }
+            
         }catch(Exception e){
             IO.imprimirT("Error la registrar logs: " + e);
             logError("Error al registrar logs: " + e);
@@ -292,10 +306,22 @@ public class Auxiliar {
     public static void logError(String s) {
         String currentTime = dataActual();
         try{
-            FileWriter aWriter = new FileWriter(path + "logError.txt", true);
-            aWriter.write(currentTime + " - " + s + "\n");
-            aWriter.flush();
-            aWriter.close();
+            File arxiu = new File(path + "log.txt");
+            if(arxiu.exists()){
+                FileWriter aWriter = new FileWriter(path + "logError.txt", true);
+                aWriter.write(currentTime + " - " + s + "\n");
+                aWriter.flush();
+                aWriter.close();
+            }else{
+                FileWriter aWriter = new FileWriter(path + "logError.txt", true);
+                aWriter.write("------------------------------------------------------------------------------------------------------------------------------------------\n");
+                aWriter.write("---------------------------Arxiu dels logs de la gestio d'empleats, atraccions i assignacions---------------------------------------------\n");
+                aWriter.write("------------------------------------------------------------------------------------------------------------------------------------------\n\n\n");
+                aWriter.write(currentTime + " - " + s + "\n");
+                aWriter.flush();
+                aWriter.close();
+            }
+            
         }catch(Exception e){
             IO.imprimirT("Error la registrar logs: " + e);
         }
@@ -426,26 +452,6 @@ public class Auxiliar {
         return seleccio_atraccio;
     }
             
-    public static void generarCSV(){
-        try {
-            //BufferedWriter out = null;
-            //out = new BufferedWriter(new FileWriter("/home/alumne/Escritorio/github/validacio_tickets/empleats.csv"));
-            PrintStream writer = new PrintStream("E:\\Carpetes\\Desktop\\empleats.csv");
-            Iterator<Persona> iteratorPerso = Arrays.arrayPersones.iterator();
-                while(iteratorPerso.hasNext()){
-                  Persona persona_aux = iteratorPerso.next();
-                    writer.println(persona_aux.getId()+","+persona_aux.getNom()+","+persona_aux.getCognom2()+","
-                    +persona_aux.getDataNaixement()+","+persona_aux.getTipusDocument()+","+persona_aux.getTipusDocument()+","
-                    +persona_aux.getSexe()+","+persona_aux.getProvincia()+","+persona_aux.getCodiPostal()+","
-                    +persona_aux.getAdreca()+","+persona_aux.getCiutat()+","+persona_aux.getTelefon()+","
-                    +persona_aux.getEmail()+","+persona_aux.getHash());
-                }
-                writer.close();
-            
-        }catch(Exception e){
-            IO.imprimirT("Error la registrar logs: " + e);
-        }
-    }
     public static String generarHash(){
             int length = 32;
             String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -456,4 +462,79 @@ public class Auxiliar {
                                      .collect(Collectors.joining());
             return str;
         }
+    public static void generarCSVEmpleats(){
+    try {
+               //BufferedWriter out = null;
+               //out = new BufferedWriter(new FileWriter("/home/alumne/Escritorio/github/validacio_tickets/empleats.csv"));
+               File f = new File(path + "empleats.csv");
+               
+               if(f.exists()){
+                   PrintStream writer = new PrintStream(path + "empleats.csv");
+                   int dialogButton = JOptionPane.YES_NO_OPTION;
+                   JOptionPane.showConfirmDialog(null, "Ya exsisteix el fitxer, vols sobreescriure?", "Alerta", dialogButton);
+                   if(dialogButton == JOptionPane.YES_OPTION){
+                         writer.println("ID, NOM,COGNOM1, COGNOM2, DATA DE NAIXEMENT, TIPUS DE DOCUMENT, NUMERO DEL DOCUMENT, SEXE, PROVINCIA, CODI POSTAL, ADRECA, CIUTAT, TELEFON, EMAIL, HASH");
+                   Iterator<Persona> iteratorPerso = Arrays.arrayPersones.iterator();
+                   while (iteratorPerso.hasNext()) {
+                       Persona persona_aux = iteratorPerso.next();
+                       writer.println(persona_aux.getId() + "," + persona_aux.getNom() + "," + persona_aux.getCognom1() + "," + persona_aux.getCognom2() + ","
+                            + persona_aux.getDataNaixement() + "," + persona_aux.getTipusDocument() + "," + persona_aux.getDNI() + ","
+                            + persona_aux.getSexe() + "," + persona_aux.getProvincia() + "," + persona_aux.getCodiPostal() + ","
+                            + persona_aux.getAdreca() + "," + persona_aux.getCiutat() + "," + persona_aux.getTelefon() + ","
+                            + persona_aux.getEmail() + "," + persona_aux.getHash()); 
+                   }
+                   writer.close();
+                   }
+                   else if(dialogButton == JOptionPane.NO_OPTION){
+                       System.exit(1);
+                   }
+                 
+               }else{
+                   PrintStream writer = new PrintStream(path + "empleats.csv");
+                   writer.println("ID, NOM,COGNOM1, COGNOM2, DATA DE NAIXEMENT, TIPUS DE DOCUMENT, NUMERO DEL DOCUMENT, SEXE, PROVINCIA, CODI POSTAL, ADRECA, CIUTAT, TELEFON, EMAIL, HASH");
+                   Iterator<Persona> iteratorPerso = Arrays.arrayPersones.iterator();
+                   while (iteratorPerso.hasNext()) {
+                       Persona persona_aux = iteratorPerso.next();
+                       writer.println(persona_aux.getId() + "," + persona_aux.getNom() + "," + persona_aux.getCognom1() + "," + persona_aux.getCognom2() + ","
+                               + persona_aux.getDataNaixement() + "," + persona_aux.getTipusDocument() + "," + persona_aux.getDNI() + ","
+                               + persona_aux.getSexe() + "," + persona_aux.getProvincia() + "," + persona_aux.getCodiPostal() + ","
+                               + persona_aux.getAdreca() + "," + persona_aux.getCiutat() + "," + persona_aux.getTelefon() + ","
+                               + persona_aux.getEmail() + "," + persona_aux.getHash());
+                   }
+                   writer.close();
+
+               }
+           }catch(Exception e){
+               IO.imprimirT("Error la registrar logs: " + e);
+           }
+       }
+    
+    public static void generarCSVAtraccions() {
+        try {
+            File f = new File(path + "atraccions.csv");
+
+            //BufferedWriter out = null;
+            //out = new BufferedWriter(new FileWriter("/home/alumne/Escritorio/github/validacio_tickets/empleats.csv"));
+            PrintStream writer = new PrintStream(path + "atraccions.csv");
+            if (f.exists()) {
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                JOptionPane.showConfirmDialog(null, "Ya exsisteix el fitxer, vols sobreescriure?", "Alerta", dialogButton);
+                if (dialogButton == JOptionPane.YES_OPTION) {
+                    writer.println("NOM, TIPUS, DATA INAUGURACIO, ALTURA MINIMA , ACCESSIBILITAT, ACCES EXPRESS");
+                    Iterator<Atraccio> iteratorAtrac = Atraccio.arrayAtraccio.iterator();
+                    while (iteratorAtrac.hasNext()) {
+                        Atraccio atraccio_aux = iteratorAtrac.next();
+                        writer.println(atraccio_aux.getNom() + "," + atraccio_aux.getTipusAtraccio() + "," + atraccio_aux.getDataInauguracio() + ","
+                                + atraccio_aux.getAlturaMin() + "," + atraccio_aux.getAccessibilitat() + "," + atraccio_aux.getAccesExpress());
+                    }
+                    writer.close();    
+                }
+                else if(dialogButton == JOptionPane.NO_OPTION){
+                       System.exit(1);
+                }
+            }
+         }catch(Exception e){
+            IO.imprimirT("Error la registrar logs: " + e);
+        }
+    }
 }
