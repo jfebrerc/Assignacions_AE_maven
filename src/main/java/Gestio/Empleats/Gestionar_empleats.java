@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Gestio.Empleats;
+
 import Biblioteques.Arrays;
 import Biblioteques.Auxiliar;
 import Biblioteques.IO;
@@ -21,6 +22,7 @@ import javax.swing.event.DocumentListener;
 import java.awt.event.*;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Usuari
@@ -32,22 +34,23 @@ public class Gestionar_empleats extends javax.swing.JFrame {
      */
     int seleccio = -1;
     int posicio = -1;
+
     public Gestionar_empleats() {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Gestionar empleats");
-        try{
+        try {
             jPanel1.setBackground(Color.decode(Main.config.carregarConf()[0]));
-        }catch (Exception e){
+        } catch (Exception e) {
             IO.imprimirTI("Error al asignar color: " + e);
         }
-        try{
-            Component[] components1=this.getContentPane().getComponents();
-            Main.config.setUIFont(new Font(carregarConf()[1], Integer.valueOf(carregarConf()[2]), Integer.valueOf(carregarConf()[3])), components1); 
-        }catch(Exception e){
+        try {
+            Component[] components1 = this.getContentPane().getComponents();
+            Main.config.setUIFont(new Font(carregarConf()[1], Integer.valueOf(carregarConf()[2]), Integer.valueOf(carregarConf()[3])), components1);
+        } catch (Exception e) {
             IO.imprimirTI("Error al carregar la font: " + e);
         }
-        
+
         textBusqueda.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -416,41 +419,50 @@ public class Gestionar_empleats extends javax.swing.JFrame {
     }//GEN-LAST:event_textBusquedaActionPerformed
 
     private void CARREGARButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CARREGARButtonActionPerformed
-       
-        seleccio = Auxiliar.carregar_dades_empleats_taula(CARREGARButton, seleccio, this, jTable1, nomText, cognomsText,segonCognom,sexe,tipusDocument,dniText,dataNaixement,codiPostal1,provincia,ciutat,adreca,email,Telefon,nominaText);
+
+        seleccio = Auxiliar.carregar_dades_empleats_taula(CARREGARButton, seleccio, this, jTable1, nomText, cognomsText, segonCognom, sexe, tipusDocument, dniText, dataNaixement, codiPostal1, provincia, ciutat, adreca, email, Telefon, nominaText);
     }//GEN-LAST:event_CARREGARButtonActionPerformed
 
     private void ELIMINARButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ELIMINARButtonActionPerformed
-                int elements [] = null;
-                int dialogResult = -1;
-                try{
-                    elements = jTable1.getSelectedRows();
-                    int dialogButton = JOptionPane.YES_NO_OPTION;
-                    dialogResult = JOptionPane.showConfirmDialog(null, "Estas segur de que vols eliminar el empleat " + ((Empleat) Arrays.arrayPersones.get(elements[0])).getNom() + "?", "CONFIRMACIO", dialogButton);
-                    IO.imprimirTI("Element eliminar: " + ((Empleat) Arrays.arrayPersones.get(elements[0])).getNom());
-                }catch (Exception error){
-                    JOptionPane.showMessageDialog(this, "Selecciona un empleat");
+        int elements[] = null;
+        int dialogResult = -1;
+        try {
+            elements = jTable1.getSelectedRows();
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            dialogResult = JOptionPane.showConfirmDialog(null, "Estas segur de que vols eliminar el empleat " + ((Empleat) Arrays.arrayPersones.get(elements[0])).getNom() + "?", "CONFIRMACIO", dialogButton);
+            IO.imprimirTI("Element eliminar: " + ((Empleat) Arrays.arrayPersones.get(elements[0])).getNom());
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(this, "Selecciona un empleat");
+        }
+        if (dialogResult == 0) {
+            if (((Empleat) Arrays.arrayPersones.get(elements[0])).getAssignat()) {
+                JOptionPane.showMessageDialog(this, "Error: no es pot eliminar un empleat assignat a una atraccio");
+            } else {
+                try {
+                    Auxiliar.log("Empleat eliminat: " + ((Empleat) Arrays.arrayPersones.get(elements[0])).getNom() + " " + ((Empleat) Arrays.arrayPersones.get(elements[0])).getDNI());
+                    Arrays.arrayPersones.remove(elements[0]);
+                    seleccio = -1;
+                    nomText.setText("");
+                    cognomsText.setText("");
+                    segonCognom.setText("");
+                    dataNaixement.setText("");
+                    codiPostal1.setText("");
+                    provincia.setText("");
+                    ciutat.setText("");
+                    adreca.setText("");
+                    email.setText("");
+                    Telefon.setText("");
+                    contrasenya.setText("");
+                    dniText.setText("");
+                    nominaText.setText("");
+                    Auxiliar.llistar_empleats_taula(textBusqueda, jTable1);
+                } catch (Exception e) {
+                    IO.imprimirTI("Error al eliminar: " + e);
+                    Auxiliar.logError("Error al eliminar empleat: " + e);
                 }
-                    if(dialogResult == 0) {
-                        if(((Empleat) Arrays.arrayPersones.get(elements[0])).getAssignat()){
-                            JOptionPane.showMessageDialog(this, "Error: no es pot eliminar un empleat assignat a una atraccio");
-                        }else{
-                          try{
-                            Auxiliar.log("Empleat eliminat: " + ((Empleat) Arrays.arrayPersones.get(elements[0])).getNom() + " " + ((Empleat) Arrays.arrayPersones.get(elements[0])).getDNI());
-                            Arrays.arrayPersones.remove(elements[0]);
-                            seleccio = -1;
-                            nomText.setText("");
-                            cognomsText.setText("");
-                            dniText.setText("");
-                            nominaText.setText("");
-                            Auxiliar.llistar_empleats_taula(textBusqueda, jTable1);
-                        }catch (Exception e){
-                            IO.imprimirTI("Error al eliminar: " + e);
-                            Auxiliar.logError("Error al eliminar empleat: " + e);
-                        }  
-                        } 
-                    }
-                 Auxiliar.llistar_empleats_taula(textBusqueda, jTable1);
+            }
+        }
+        Auxiliar.llistar_empleats_taula(textBusqueda, jTable1);
     }//GEN-LAST:event_ELIMINARButtonActionPerformed
 
     private void llimpiarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llimpiarButtonActionPerformed
@@ -464,41 +476,51 @@ public class Gestionar_empleats extends javax.swing.JFrame {
     }//GEN-LAST:event_ENREREButtonActionPerformed
 
     private void modificarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarButtonActionPerformed
-        if (seleccio==-1){
-                    JOptionPane.showMessageDialog(this, "Carrega un empleat per a modificar");
-                }else {
-                    try {
-                        String anticNom=Arrays.arrayPersones.get(seleccio).getNom();
-                        String anticCognom=Arrays.arrayPersones.get(seleccio).getCognom1();
-                        String anticSegonCognom=Arrays.arrayPersones.get(seleccio).getCognom2();
-                        String anticSexe=Arrays.arrayPersones.get(seleccio).getSexe();
-                        String anticTipdoc=Arrays.arrayPersones.get(seleccio).getTipusDocument();
-                        String anticNumDoc=Arrays.arrayPersones.get(seleccio).getDNI();
-                        String anticDataNaixement=Arrays.arrayPersones.get(seleccio).getDataNaixement();
-                        String anticCodiPostal=Arrays.arrayPersones.get(seleccio).getCodiPostal();
-                        String anticProvincia=Arrays.arrayPersones.get(seleccio).getProvincia();
-                        String anticCP=Arrays.arrayPersones.get(seleccio).getCodiPostal();
-                        String anticAdreca=Arrays.arrayPersones.get(seleccio).getAdreca();
-                        String anticEmail=Arrays.arrayPersones.get(seleccio).getEmail();
-                        String anticTelefon=Arrays.arrayPersones.get(seleccio).getTelefon();
-                        String antigaNomina=((Empleat)Arrays.arrayPersones.get(seleccio)).getNomina();
-                        
-                        
-                        Arrays.arrayPersones.get(seleccio).setNom(nomText.getText());
-                        Arrays.arrayPersones.get(seleccio).setCognom1(cognomsText.getText());
-                        Arrays.arrayPersones.get(seleccio).setDNI(dniText.getText());
-                        ((Empleat)Arrays.arrayPersones.get(seleccio)).setNomina(nominaText.getText());
-                        //((Empleat)Arrays.arrayPersones.get(seleccio)).setNomina(css.getText());
-                        
-                        
-                        Auxiliar.llistar_empleats_taula(textBusqueda, jTable1);
-                        JOptionPane.showMessageDialog(this, "Empleat " + Arrays.arrayPersones.get(seleccio).getNom()  +  " modificat correctament");
-                        Auxiliar.log("Empleat modificat: " + anticNom + " | " + anticCognom + " | " + anticNumDoc + " | " + antigaNomina + " | " + "\nA: " + Arrays.arrayPersones.get(seleccio).getNom() + " | " + Arrays.arrayPersones.get(seleccio).getCognom1() + " | "+ Arrays.arrayPersones.get(seleccio).getDNI() + " | "+ ((Empleat)Arrays.arrayPersones.get(seleccio)).getNomina());
-                    } catch (Exception error) {
-                        IO.imprimirTI("Error al modificar: " + error);
-                        Auxiliar.log("Error al modificar empleat: " + error);
-                    }
-                }
+        if (seleccio == -1) {
+            JOptionPane.showMessageDialog(this, "Carrega un empleat per a modificar");
+        } else {
+            try {
+                String anticNom = Arrays.arrayPersones.get(seleccio).getNom();
+                String anticCognom = Arrays.arrayPersones.get(seleccio).getCognom1();
+                String anticSegonCognom = Arrays.arrayPersones.get(seleccio).getCognom2();
+                String anticSexe = Arrays.arrayPersones.get(seleccio).getSexe();
+                String anticTipdoc = Arrays.arrayPersones.get(seleccio).getTipusDocument();
+                String anticNumDoc = Arrays.arrayPersones.get(seleccio).getDNI();
+                String anticDataNaixement = Arrays.arrayPersones.get(seleccio).getDataNaixement();
+                String anticCodiPostal = Arrays.arrayPersones.get(seleccio).getCodiPostal();
+                String anticProvincia = Arrays.arrayPersones.get(seleccio).getProvincia();
+                String anticCP = Arrays.arrayPersones.get(seleccio).getCodiPostal();
+                String anticAdreca = Arrays.arrayPersones.get(seleccio).getAdreca();
+                String anticEmail = Arrays.arrayPersones.get(seleccio).getEmail();
+                String anticTelefon = Arrays.arrayPersones.get(seleccio).getTelefon();
+                String antigaNomina = ((Empleat) Arrays.arrayPersones.get(seleccio)).getNomina();
+
+                Arrays.arrayPersones.get(seleccio).setNom(nomText.getText());
+                Arrays.arrayPersones.get(seleccio).setCognom1(cognomsText.getText());
+                Arrays.arrayPersones.get(seleccio).setCognom2(segonCognom.getText());
+                Arrays.arrayPersones.get(seleccio).setDNI(dniText.getText());
+                Arrays.arrayPersones.get(seleccio).setSexe(sexe.getSelectedItem().toString());
+                Arrays.arrayPersones.get(seleccio).setTipusDocument(tipusDocument.getSelectedItem().toString());
+                Arrays.arrayPersones.get(seleccio).setDNI(dniText.getText());
+                Arrays.arrayPersones.get(seleccio).setDataNaixement(dataNaixement.getText());
+                Arrays.arrayPersones.get(seleccio).setCodiPostal(codiPostal1.getText());
+                Arrays.arrayPersones.get(seleccio).setProvincia(provincia.getText());
+                Arrays.arrayPersones.get(seleccio).setAdreca(adreca.getText());
+                Arrays.arrayPersones.get(seleccio).setEmail(email.getText());
+                Arrays.arrayPersones.get(seleccio).setTelefon(Telefon.getText());
+
+                Arrays.arrayPersones.get(seleccio).setDNI(dniText.getText());
+                ((Empleat) Arrays.arrayPersones.get(seleccio)).setNomina(nominaText.getText());
+                //((Empleat)Arrays.arrayPersones.get(seleccio)).setNomina(css.getText());
+
+                Auxiliar.llistar_empleats_taula(textBusqueda, jTable1);
+                JOptionPane.showMessageDialog(this, "Empleat " + Arrays.arrayPersones.get(seleccio).getNom() + " modificat correctament");
+                Auxiliar.log("Empleat modificat: " + anticNom + " | " + anticCognom + " | " + anticNumDoc + " | " + antigaNomina + " | " + "\nA: " + Arrays.arrayPersones.get(seleccio).getNom() + " | " + Arrays.arrayPersones.get(seleccio).getCognom1() + " | " + Arrays.arrayPersones.get(seleccio).getDNI() + " | " + ((Empleat) Arrays.arrayPersones.get(seleccio)).getNomina());
+            } catch (Exception error) {
+                IO.imprimirTI("Error al modificar: " + error);
+                Auxiliar.log("Error al modificar empleat: " + error);
+            }
+        }
     }//GEN-LAST:event_modificarButtonActionPerformed
 
     private void BUIDARButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUIDARButtonActionPerformed
@@ -518,13 +540,13 @@ public class Gestionar_empleats extends javax.swing.JFrame {
     }//GEN-LAST:event_BUIDARButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       // Auxiliar.llistar_empleats(textBusqueda, llistaEmpleats); //Llistar empleats al entrar al jframe
+        // Auxiliar.llistar_empleats(textBusqueda, llistaEmpleats); //Llistar empleats al entrar al jframe
         Auxiliar.llistar_empleats_taula(textBusqueda, jTable1);
     }//GEN-LAST:event_formWindowOpened
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if(evt.getClickCount()==2 && evt.getButton() == MouseEvent.BUTTON1){
-            seleccio = Auxiliar.carregar_dades_empleats_taula(CARREGARButton, seleccio, this, jTable1, nomText, cognomsText,segonCognom,sexe,tipusDocument,dniText,dataNaixement,codiPostal1,provincia,ciutat,adreca,email,Telefon,nominaText);
+        if (evt.getClickCount() == 2 && evt.getButton() == MouseEvent.BUTTON1) {
+            seleccio = Auxiliar.carregar_dades_empleats_taula(CARREGARButton, seleccio, this, jTable1, nomText, cognomsText, segonCognom, sexe, tipusDocument, dniText, dataNaixement, codiPostal1, provincia, ciutat, adreca, email, Telefon, nominaText);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
