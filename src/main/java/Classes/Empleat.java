@@ -20,6 +20,7 @@ public class Empleat extends Persona { //Comentaris al marge per als atributs
 
         super(nomc, cognom1c,cognom2c, dnic, passwdc, emailc, dataNaixementc, adrecac, ciutatc, provinciac, codiPostalc,
                 tipusDocumentc, sexec, telefonc, idRolc, hashc);
+        
         nomina = nominac;
         assignat = false;
     }

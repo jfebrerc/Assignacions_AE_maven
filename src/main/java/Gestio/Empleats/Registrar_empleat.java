@@ -17,6 +17,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  *
  * @author Usuari
@@ -30,6 +33,8 @@ public class Registrar_empleat extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Registrar empleats");
+        data1.setDateFormatString("dd/MM/yyyy");
+        data2.setDateFormatString("dd/MM/yyyy");
         try{
             getContentPane().setBackground(Color.decode(Main.config.carregarConf()[0]));
         }catch (Exception e){
@@ -95,11 +100,11 @@ public class Registrar_empleat extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         carrec = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        dataFiContracte = new javax.swing.JFormattedTextField();
         jLabel22 = new javax.swing.JLabel();
-        dataIniciContracte1 = new javax.swing.JFormattedTextField();
         jLabel23 = new javax.swing.JLabel();
         Horari = new javax.swing.JComboBox<>();
+        data1 = new com.toedter.calendar.JDateChooser();
+        data2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -219,16 +224,7 @@ public class Registrar_empleat extends javax.swing.JFrame {
 
         jLabel21.setText("Data Inici Contracte");
 
-        dataFiContracte.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        dataFiContracte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataFiContracteActionPerformed(evt);
-            }
-        });
-
         jLabel22.setText("Data Fi Contracte");
-
-        dataIniciContracte1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         jLabel23.setText("Horari");
 
@@ -309,13 +305,13 @@ public class Registrar_empleat extends javax.swing.JFrame {
                                     .addComponent(jLabel18)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel21)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(dataIniciContracte1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(data1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jLabel22)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(dataFiContracte, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(147, 147, 147)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(data2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(59, 59, 59)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -408,14 +404,16 @@ public class Registrar_empleat extends javax.swing.JFrame {
                     .addComponent(jLabel20)
                     .addComponent(carrec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(dataFiContracte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel22)
-                    .addComponent(dataIniciContracte1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
-                    .addComponent(Horari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel23)
+                            .addComponent(Horari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(data1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(data2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ENREREButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buidarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,6 +431,13 @@ public class Registrar_empleat extends javax.swing.JFrame {
     private void REGISTRARButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGISTRARButtonActionPerformed
         String idRol="2";
         String hash="";
+        
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date time = data1.getCalendar().getTime();  
+        String data1Text = df.format(time);
+                
+        Date time2 = data2.getCalendar().getTime();  
+        String data2Text = df.format(time2);
         if (nomText.getText().isEmpty() || cognomnsText.getText().isEmpty() || dniText.getText().isEmpty() || nominaText.getText().isEmpty() || segonCognom.getText().isEmpty() || email.getText().isEmpty() || adreca.getText().isEmpty() || ciutat.getText().isEmpty() || provincia.getText().isEmpty() || codiPostal.getText().isEmpty()|| css.getText().isEmpty()|| nominaText.getText().isEmpty()|| iban.getText().isEmpty()|| especialitat.getText().isEmpty()|| carrec.getText().isEmpty() || Horari.equals(null)){
                     JOptionPane.showMessageDialog(this, "Error: Hi ha algun camp per a omplir");
                     IO.imprimirTI("Se ha intentat registrar un empleat en algun camp buit");
@@ -493,10 +498,6 @@ public class Registrar_empleat extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
 
-    private void dataFiContracteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataFiContracteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataFiContracteActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -543,8 +544,8 @@ public class Registrar_empleat extends javax.swing.JFrame {
     private javax.swing.JTextField codiPostal;
     private javax.swing.JTextField cognomnsText;
     private javax.swing.JTextField css;
-    private javax.swing.JFormattedTextField dataFiContracte;
-    private javax.swing.JFormattedTextField dataIniciContracte1;
+    private com.toedter.calendar.JDateChooser data1;
+    private com.toedter.calendar.JDateChooser data2;
     private javax.swing.JFormattedTextField dataNaixement;
     private javax.swing.JTextField dniText;
     private javax.swing.JTextField email;
