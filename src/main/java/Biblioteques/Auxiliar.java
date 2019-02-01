@@ -32,6 +32,11 @@ import java.util.stream.Collectors;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import org.mindrot.jbcrypt.BCrypt;
+import java.util.*;
+import javax.activation.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.naming.*;
 
 public class Auxiliar {
 
@@ -567,5 +572,50 @@ public class Auxiliar {
         } catch (Exception e) {
             IO.imprimirT("Error la registrar logs: " + e);
         }
+    }
+    public static void enviarCorreu(String hash, String email){
+        System.out.println("enviant");
+        String remitent = "univeylandia@gmail.com";
+        String destinatari = email;
+       // destinatari(new InternetAddress(destinatari));
+        String asunto = "Validacio de Univeylandia";
+         
+        String cuerpo = ""
+                + "\nActiva el teu compte:\n"
+                + "http://www.univeylandia-parc.cat/verificar.php?email="+email+"&hash="+hash;
+        
+        
+
+        Properties props = System.getProperties();
+        props.setProperty("mail.smtp.host", "smtp.gmail.com");
+        props.setProperty("mail.smtp.user", remitent);
+        //props.setProperty("mail.smtp.clave", "Alumne123-123");
+        props.setProperty("mail.smtp.auth", "true");
+        props.setProperty("mail.smtp.starttls.enable", "true");
+        props.setProperty("mail.smtp.port", "587");
+        
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+        
+        try{
+            String clave = "Alumne123-123";
+            message.setFrom(new InternetAddress(remitent));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatari));
+            message.setSubject(asunto);
+            //message.setContent
+         // (+ cuerpo);
+            message.setText(cuerpo);
+             session.setDebug(true);
+            Transport transport = session.getTransport("smtp");
+            transport.connect("smtp.gmail.com", remitent, clave);
+            System.out.println("conectat");
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+            
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+         
     }
 }

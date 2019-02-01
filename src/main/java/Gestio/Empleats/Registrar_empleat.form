@@ -252,7 +252,7 @@
                   </Group>
                   <Component id="data2" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" pref="28" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ENREREButton" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="buidarButton" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
