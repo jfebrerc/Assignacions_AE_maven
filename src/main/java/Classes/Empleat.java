@@ -16,18 +16,26 @@ public class Empleat extends Persona { //Comentaris al marge per als atributs
     private boolean assignat;
 
     public Empleat(String nomc, String cognom1c,String cognom2c, String dnic, String passwdc, String emailc, String dataNaixementc, String adrecac, String ciutatc, String provinciac, String codiPostalc,
-            String tipusDocumentc, String sexec, String telefonc, String idRolc, String hashc, String nominac,String iban,String horari) {
+            String tipusDocumentc, String sexec, String telefonc, String idRolc, String hashc, String nominac,String ibanc,String horaric,String especialitatc,String carrecc,String data1c,String data2c) {
 
         super(nomc, cognom1c,cognom2c, dnic, passwdc, emailc, dataNaixementc, adrecac, ciutatc, provinciac, codiPostalc,
                 tipusDocumentc, sexec, telefonc, idRolc, hashc);
         
         nomina = nominac;
         assignat = false;
+        especialitat = especialitatc;
+        carrec = carrecc;
+        dataContracte = data1c;
+        dataFinalContracte = data2c;
+        iban = ibanc;
+        horari =horaric;
+        
     }
 
     /**
      * GETTERS
      */
+    
     public String getCodiSS() {
         return codiSS;
     }
@@ -67,6 +75,7 @@ public class Empleat extends Persona { //Comentaris al marge per als atributs
     /**
      * SETTERS
      */
+    
     public void setCodiSS(String s) {
         codiSS = s;
     }

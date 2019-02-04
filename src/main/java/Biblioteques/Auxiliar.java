@@ -49,7 +49,7 @@ public class Auxiliar {
     public static void llistar_empleats(JTextField textBusqueda, JList llistaEmpleats) {
         String cerca = textBusqueda.getText();
         DefaultListModel d1m = new DefaultListModel();
-        String titol_columna = String.format("%s %18s %71s %69s %71s", "ID", "NOM", "COGNOM", "DNI", "NOMINA");
+        String titol_columna = String.format("%s %18s %71s %69s %71s", "ID", "NOM", "COGNOM","SEGON COGNOM", "DNI", "NOMINA");
         String divisor = "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
         d1m.addElement(titol_columna);
         d1m.addElement(divisor);
@@ -75,7 +75,7 @@ public class Auxiliar {
                 String persona_cerca = p.toString().toLowerCase();
                 if (p instanceof Empleat && persona_cerca.indexOf(cercaUsuari) != -1) {
                     tabla.addRow(new Object[]{p.getId(), p.getNom(), p.getCognom1(), p.getCognom2(), p.getSexe(), p.getTipusDocument(), p.getDNI(), p.getDataNaixement(), p.getCodiPostal(), p.getProvincia(),
-                        p.getCiutat(), p.getAdreca(), p.getEmail(), p.getTelefon(), ((Empleat) p).getNomina()});
+                        p.getCiutat(), p.getAdreca(), p.getEmail(), p.getTelefon(), ((Empleat) p).getNomina(),((Empleat) p).getIban(),((Empleat) p).getCarrec(),((Empleat) p).getEspecialitat(),((Empleat) p).getDataContracte(),((Empleat) p).getDataFinalContracte()});
                     trobat = true;
                 }
             }
@@ -110,8 +110,8 @@ public class Auxiliar {
      * FUNCIO PER A CARREGAR DADES ALS DIFERENTS CAMPS DE TEXT PER A MODIFICAR-LES
      */
     public static int carregar_dades_empleats(JList llistaEmpleats, JFrame frame_llistaEmpleats, JTextField nomText, JTextField cognomsText,JTextField segonCognom, 
-            JTextField dniText,JComboBox sexe, JTextField nominaText,JComboBox tipDocument,JTextField  dataNaixement,JTextField codiPostal,JTextField provincia,
-            JTextField ciutat,JTextField adreca,JTextField  email,JTextField telefon, int seleccio) {
+            JTextField dniText,JComboBox sexe, JTextField nominaText,JComboBox tipDocument,JDateChooser dataNaixement,JTextField codiPostal,JTextField provincia,
+            JTextField ciutat,JTextField adreca,JTextField  email,JTextField telefon,JTextField Iban,JTextField especialitat, JTextField carrec,JComboBox horari,JDateChooser dataInici, JDateChooser dataFi, int seleccio) {
         Object indices2 = llistaEmpleats.getSelectedValue();  //Es guarda la seleccio en un objecte
         IO.imprimirTI("Contingut: " + (indices2));
         if (indices2 == null) {  //Es comprova si hi ha algo seleccionat
@@ -123,7 +123,7 @@ public class Auxiliar {
                 segonCognom.setText(Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2)).getCognom2());
                 sexe.setSelectedItem(Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2)).getSexe());
                 tipDocument.setSelectedItem(Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2)).getDataNaixement());
-                dataNaixement.setText(Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2)).getCognom1());
+                dataNaixement.setDateFormatString(Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2)).getCognom1());
                 codiPostal.setText(Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2)).getCodiPostal());
                 provincia.setText(Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2)).getProvincia());
                 ciutat.setText(Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2)).getCiutat());
@@ -131,8 +131,14 @@ public class Auxiliar {
                 telefon.setText(Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2)).getTelefon());
                 dniText.setText(Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2)).getDNI());
                 nominaText.setText(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2))).getNomina());
+                Iban.setText(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2))).getIban());
+                especialitat.setText(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2))).getEspecialitat());
+                horari.setSelectedItem(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2))).getHorari());
+                dataInici.setDateFormatString(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2))).getDataContracte());
+                dataFi.setDateFormatString(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.indexOf(indices2))).getDataFinalContracte());
                 seleccio = Arrays.arrayPersones.indexOf(indices2);
                 IO.imprimirTI("Element seleccionat: " + seleccio);
+                
             } catch (Exception error) { //Si retorna algun tipus de error, elimina qualsevol tipus de seleccio activa i buida 
                 IO.imprimirTI("Error al carregar empleat: " + error);
                 JOptionPane.showMessageDialog(frame_llistaEmpleats, "Selecciona un empleat");
@@ -140,7 +146,6 @@ public class Auxiliar {
                 nomText.setText("");
                 cognomsText.setText("");
                 segonCognom.setText("");
-                dataNaixement.setText("");
                 codiPostal.setText("");
                 provincia.setText("");
                 ciutat.setText("");
@@ -148,6 +153,8 @@ public class Auxiliar {
                 telefon.setText("");
                 dniText.setText("");
                 nominaText.setText("");
+                Iban.setText("");
+                especialitat.setText("");
                 Auxiliar.log("Error al carregar empleat: " + error);
             }
         }
@@ -155,8 +162,8 @@ public class Auxiliar {
     }
 
     public static int carregar_dades_empleats_taula(JButton carregar, int seleccio, JFrame frame, JTable jTable1, JTextField nomText, JTextField cognomsText, JTextField segonCognom,
-            JComboBox sexe, JComboBox tipDocument, JTextField dniText, JTextField dataNaixement, JTextField codiPostal, JTextField provincia, JTextField ciutat, JTextField adreca, JTextField email,
-            JTextField telefon, JTextField nominaText) {
+            JComboBox sexe, JComboBox tipDocument, JTextField dniText, JDateChooser dataNaixement, JTextField codiPostal, JTextField provincia, JTextField ciutat, JTextField adreca, JTextField email,
+            JTextField telefon, JTextField nominaText,JTextField Iban,JTextField especialitat, JTextField carrec,JComboBox horari,JDateChooser dataInici, JDateChooser dataFi) {
         Object elementmodificat = null;
         try {
             elementmodificat = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
@@ -193,7 +200,7 @@ public class Auxiliar {
                     sexe.setSelectedItem(Arrays.arrayPersones.get(seleccio).getSexe());
                     tipDocument.setSelectedItem(Arrays.arrayPersones.get(seleccio).getTipusDocument());
                     dniText.setText(Arrays.arrayPersones.get(seleccio).getDNI());
-                    dataNaixement.setText(Arrays.arrayPersones.get(seleccio).getDataNaixement());
+                    dataNaixement.setDateFormatString(Arrays.arrayPersones.get(seleccio).getDataNaixement());
                     codiPostal.setText(Arrays.arrayPersones.get(seleccio).getCodiPostal());
                     provincia.setText(Arrays.arrayPersones.get(seleccio).getProvincia());
                     ciutat.setText(Arrays.arrayPersones.get(seleccio).getCiutat());
@@ -201,6 +208,13 @@ public class Auxiliar {
                     email.setText(Arrays.arrayPersones.get(seleccio).getEmail());
                     telefon.setText(Arrays.arrayPersones.get(seleccio).getTelefon());
                     nominaText.setText(((Empleat) Arrays.arrayPersones.get(seleccio)).getNomina());
+                    Iban.setText(((Empleat) Arrays.arrayPersones.get(seleccio)).getIban());
+                    especialitat.setText(((Empleat) Arrays.arrayPersones.get(seleccio)).getEspecialitat());
+                    carrec.setText(((Empleat) Arrays.arrayPersones.get(seleccio)).getCarrec());
+                    horari.setSelectedItem(((Empleat) Arrays.arrayPersones.get(seleccio)).getHorari());
+                    dataInici.setDateFormatString(((Empleat) Arrays.arrayPersones.get(seleccio)).getDataCreacioRegistre());
+                    dataFi.setDateFormatString(((Empleat) Arrays.arrayPersones.get(seleccio)).getDataFinalContracte());
+                    
                 } catch (Exception e) {
                     logError("Error al carrgar les dades de un empleat: " + e);
                 }
@@ -385,7 +399,7 @@ public class Auxiliar {
             String hashed = BCrypt.hashpw("alumne" + (i + 1), BCrypt.gensalt());
             Arrays.arrayPersones.add(new Empleat("nom" + (i + 1), "cognom" + (i + 1), "cognom2" + (i + 1), "dni" + (i + 1), hashed, "email" + (i + 1), "dataNaixement" + (i + 1), "adreça" + (i + 1),
                     "ciutat" + (i + 1), "provincia" + (i + 1), "codiPostal" + (i + 1), "tipDoc" + (i + 1), "sexe" + (i + 1), "telefon" + (i + 1), "idRol" + (i + 1), generarHash(),
-                    "nomina" + (i + 1), "iban" + (i + 1), "horari" + (i + 1)));
+                    "nomina" + (i + 1), "iban" + (i + 1), "horari" + (i + 1),"especialitat"+ (i + 1),"carrec"+ (i + 1),"data1"+ (i + 1),"data2"+ (i + 1)));
             //IO.imprimirTI(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getPasswd());
 
         }

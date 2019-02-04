@@ -1,0 +1,11 @@
+------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------Arxiu dels logs de la gestio d'empleats, atraccions i assignacions---------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+03/02/2019 18:16:37 - Empleat registrat: bdsbfd bfsdbfd bfdfsbdf
+03/02/2019 18:17:59 - Empleat modificat: bdsbfd | bfsdbfd | bfsdbfds | Home | DNI | bfdfsbdf |  | bfdsbfd | bdfsbfd | bfdsbfd | bfsdbfsd | bfdsbdf | bfdsbfds | bfdsbdfsb | 
+A: bdsbfd | bfsdbfd | bfdfsbdf | hola
+04/02/2019 15:33:06 - Empleat registrat: bsdbdfd bfdsb bfds
+04/02/2019 15:48:47 - Empleat modificat: nom5 | cognom5 | cognom25 | sexe5 | tipDoc5 | dni5 | dataNaixement5 | codiPostal5 | provincia5 | codiPostal5 | adreça5 | email5 | telefon5 | nomina5 | 
+A: nom5 | cognom5 | dni5 | nomina5

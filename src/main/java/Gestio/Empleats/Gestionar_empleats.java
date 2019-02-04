@@ -98,7 +98,6 @@ public class Gestionar_empleats extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         tipusDocument = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        dataNaixement = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         provincia = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -115,10 +114,23 @@ public class Gestionar_empleats extends javax.swing.JFrame {
         nominaText = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         contrasenya = new javax.swing.JTextField();
+        dataNaixement = new com.toedter.calendar.JDateChooser();
         modificarButton = new javax.swing.JButton();
         BUIDARButton = new javax.swing.JButton();
         ELIMINARButton = new javax.swing.JButton();
         ENREREButton = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        iban = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        especialitat = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        carrec = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        horari = new javax.swing.JComboBox<>();
+        jLabel22 = new javax.swing.JLabel();
+        data2 = new com.toedter.calendar.JDateChooser();
+        data1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -161,11 +173,11 @@ public class Gestionar_empleats extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nom", "Primer Cognom","Segon Cognom", "Sexe","Tipus Document","Num Document","Data Naixement","Codi Postal","Provincia","Ciutat","Adreça","Email","Telefon","Nomina"
+                "ID", "Nom", "Primer Cognom","Segon Cognom", "Sexe","Tipus Document","Num Document","Data Naixement","Codi Postal","Provincia","Ciutat","Adreça","Email","Telefon","Nomina","iban","carrec","especialitat", "horari","data1","data2"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false,false,false,false,false,false,false,false,false,false,false,
+                false, false, false, false, false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -225,34 +237,6 @@ public class Gestionar_empleats extends javax.swing.JFrame {
 
         jLabel16.setText("Contrasenya");
 
-        modificarButton.setText("MODIFICAR");
-        modificarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarButtonActionPerformed(evt);
-            }
-        });
-
-        BUIDARButton.setText("BUIDAR");
-        BUIDARButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUIDARButtonActionPerformed(evt);
-            }
-        });
-
-        ELIMINARButton.setText("ELIMINAR");
-        ELIMINARButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ELIMINARButtonActionPerformed(evt);
-            }
-        });
-
-        ENREREButton.setText("ENRERE");
-        ENREREButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ENREREButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -292,11 +276,12 @@ public class Gestionar_empleats extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel16))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(adreca)
-                            .addComponent(cognomsText)
-                            .addComponent(dataNaixement)
-                            .addComponent(contrasenya, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(adreca)
+                                .addComponent(cognomsText)
+                                .addComponent(contrasenya, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                            .addComponent(dataNaixement, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
@@ -326,16 +311,6 @@ public class Gestionar_empleats extends javax.swing.JFrame {
                                     .addComponent(provincia)
                                     .addComponent(Telefon, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))))
                         .addGap(0, 174, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(modificarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BUIDARButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ELIMINARButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ENREREButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,29 +323,33 @@ public class Gestionar_empleats extends javax.swing.JFrame {
                     .addComponent(llimpiarButton)
                     .addComponent(CARREGARButton))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cognomsText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(nomText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6)
-                    .addComponent(segonCognom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(sexe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(tipusDocument, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(dniText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(dataNaixement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(codiPostal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cognomsText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(nomText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6)
+                            .addComponent(segonCognom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(sexe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(tipusDocument, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(dniText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(codiPostal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(dataNaixement, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
@@ -386,14 +365,50 @@ public class Gestionar_empleats extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(nominaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
-                    .addComponent(contrasenya, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modificarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BUIDARButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ELIMINARButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ENREREButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(contrasenya, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        modificarButton.setText("MODIFICAR");
+        modificarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarButtonActionPerformed(evt);
+            }
+        });
+
+        BUIDARButton.setText("BUIDAR");
+        BUIDARButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUIDARButtonActionPerformed(evt);
+            }
+        });
+
+        ELIMINARButton.setText("ELIMINAR");
+        ELIMINARButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ELIMINARButtonActionPerformed(evt);
+            }
+        });
+
+        ENREREButton.setText("ENRERE");
+        ENREREButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ENREREButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Iban");
+
+        jLabel18.setText("Especialitat");
+
+        jLabel19.setText("Carrrec");
+
+        jLabel20.setText("Data Inici Contracte");
+
+        jLabel21.setText("Data fi Contracte");
+
+        horari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mati", "Tarde", "Nit" }));
+
+        jLabel22.setText("Horari");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -401,14 +416,80 @@ public class Gestionar_empleats extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addGap(96, 96, 96)
+                                .addComponent(iban, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(data1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel21))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(especialitat, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(69, 69, 69)
+                                .addComponent(jLabel19))
+                            .addComponent(data2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(carrec, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(112, 112, 112)
+                                .addComponent(jLabel22)
+                                .addGap(18, 18, 18)
+                                .addComponent(horari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(modificarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BUIDARButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ELIMINARButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ENREREButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(186, 186, 186))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(iban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(especialitat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
+                    .addComponent(carrec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(horari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel21))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(modificarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BUIDARButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ELIMINARButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ENREREButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(data2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(data1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -420,7 +501,7 @@ public class Gestionar_empleats extends javax.swing.JFrame {
 
     private void CARREGARButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CARREGARButtonActionPerformed
 
-        seleccio = Auxiliar.carregar_dades_empleats_taula(CARREGARButton, seleccio, this, jTable1, nomText, cognomsText, segonCognom, sexe, tipusDocument, dniText, dataNaixement, codiPostal1, provincia, ciutat, adreca, email, Telefon, nominaText);
+        seleccio = Auxiliar.carregar_dades_empleats_taula(CARREGARButton, seleccio, this, jTable1, nomText, cognomsText, segonCognom, sexe, tipusDocument, dniText, dataNaixement, codiPostal1, provincia, ciutat, adreca, email, Telefon, nominaText, iban,especialitat,carrec,horari,data1,data2);
     }//GEN-LAST:event_CARREGARButtonActionPerformed
 
     private void ELIMINARButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ELIMINARButtonActionPerformed
@@ -445,7 +526,6 @@ public class Gestionar_empleats extends javax.swing.JFrame {
                     nomText.setText("");
                     cognomsText.setText("");
                     segonCognom.setText("");
-                    dataNaixement.setText("");
                     codiPostal1.setText("");
                     provincia.setText("");
                     ciutat.setText("");
@@ -455,6 +535,9 @@ public class Gestionar_empleats extends javax.swing.JFrame {
                     contrasenya.setText("");
                     dniText.setText("");
                     nominaText.setText("");
+                    iban.setText("");
+                    especialitat.setText("");
+                    carrec.setText("");
                     Auxiliar.llistar_empleats_taula(textBusqueda, jTable1);
                 } catch (Exception e) {
                     IO.imprimirTI("Error al eliminar: " + e);
@@ -501,13 +584,19 @@ public class Gestionar_empleats extends javax.swing.JFrame {
                 Arrays.arrayPersones.get(seleccio).setDNI(dniText.getText());
                 Arrays.arrayPersones.get(seleccio).setSexe(sexe.getSelectedItem().toString());
                 Arrays.arrayPersones.get(seleccio).setTipusDocument(tipusDocument.getSelectedItem().toString());
-                Arrays.arrayPersones.get(seleccio).setDNI(dniText.getText());
-                Arrays.arrayPersones.get(seleccio).setDataNaixement(dataNaixement.getText());
+                Arrays.arrayPersones.get(seleccio).setDataNaixement(dataNaixement.getDateFormatString());
                 Arrays.arrayPersones.get(seleccio).setCodiPostal(codiPostal1.getText());
                 Arrays.arrayPersones.get(seleccio).setProvincia(provincia.getText());
                 Arrays.arrayPersones.get(seleccio).setAdreca(adreca.getText());
                 Arrays.arrayPersones.get(seleccio).setEmail(email.getText());
                 Arrays.arrayPersones.get(seleccio).setTelefon(Telefon.getText());
+                ((Empleat)Arrays.arrayPersones.get(seleccio)).setNomina(nominaText.getText());
+                ((Empleat)Arrays.arrayPersones.get(seleccio)).setIban(iban.getText());
+                ((Empleat)Arrays.arrayPersones.get(seleccio)).setCarrec(carrec.getText());
+                ((Empleat)Arrays.arrayPersones.get(seleccio)).setEspecialitat(especialitat.getText());
+                ((Empleat)Arrays.arrayPersones.get(seleccio)).setHorari(horari.getSelectedItem().toString());
+                ((Empleat)Arrays.arrayPersones.get(seleccio)).setDataContracte(data1.getDateFormatString());
+                ((Empleat)Arrays.arrayPersones.get(seleccio)).setDataFinalContracte(data2.getDateFormatString());
 
                 Arrays.arrayPersones.get(seleccio).setDNI(dniText.getText());
                 ((Empleat) Arrays.arrayPersones.get(seleccio)).setNomina(nominaText.getText());
@@ -515,7 +604,8 @@ public class Gestionar_empleats extends javax.swing.JFrame {
 
                 Auxiliar.llistar_empleats_taula(textBusqueda, jTable1);
                 JOptionPane.showMessageDialog(this, "Empleat " + Arrays.arrayPersones.get(seleccio).getNom() + " modificat correctament");
-                Auxiliar.log("Empleat modificat: " + anticNom + " | " + anticCognom + " | " + anticNumDoc + " | " + antigaNomina + " | " + "\nA: " + Arrays.arrayPersones.get(seleccio).getNom() + " | " + Arrays.arrayPersones.get(seleccio).getCognom1() + " | " + Arrays.arrayPersones.get(seleccio).getDNI() + " | " + ((Empleat) Arrays.arrayPersones.get(seleccio)).getNomina());
+                Auxiliar.log("Empleat modificat: " + anticNom + " | " + anticCognom + " | "+ anticSegonCognom + " | "+ anticSexe + " | "+anticTipdoc
+                        + " | "+  anticNumDoc+ " | "+anticDataNaixement+ " | "+anticCodiPostal+ " | "+anticProvincia+ " | "+anticCP+ " | "+anticAdreca+ " | "+anticEmail + " | "+anticTelefon+ " | " + antigaNomina + " | " + "\nA: " + Arrays.arrayPersones.get(seleccio).getNom() + " | " + Arrays.arrayPersones.get(seleccio).getCognom1() + " | " + Arrays.arrayPersones.get(seleccio).getDNI() + " | " + ((Empleat) Arrays.arrayPersones.get(seleccio)).getNomina());
             } catch (Exception error) {
                 IO.imprimirTI("Error al modificar: " + error);
                 Auxiliar.log("Error al modificar empleat: " + error);
@@ -529,7 +619,6 @@ public class Gestionar_empleats extends javax.swing.JFrame {
         cognomsText.setText("");
         segonCognom.setText("");
         dniText.setText("");
-        dataNaixement.setText("");
         codiPostal1.setText("");
         provincia.setText("");
         ciutat.setText("");
@@ -537,6 +626,10 @@ public class Gestionar_empleats extends javax.swing.JFrame {
         email.setText("");
         Telefon.setText("");
         nominaText.setText("");
+        iban.setText("");
+        especialitat.setText("");
+        carrec.setText("");
+        
     }//GEN-LAST:event_BUIDARButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -546,7 +639,7 @@ public class Gestionar_empleats extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 2 && evt.getButton() == MouseEvent.BUTTON1) {
-            seleccio = Auxiliar.carregar_dades_empleats_taula(CARREGARButton, seleccio, this, jTable1, nomText, cognomsText, segonCognom, sexe, tipusDocument, dniText, dataNaixement, codiPostal1, provincia, ciutat, adreca, email, Telefon, nominaText);
+            seleccio = Auxiliar.carregar_dades_empleats_taula(CARREGARButton, seleccio, this, jTable1, nomText, cognomsText, segonCognom, sexe, tipusDocument, dniText, dataNaixement, codiPostal1, provincia, ciutat, adreca, email, Telefon, nominaText,iban,especialitat,carrec, horari,data1,data2);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -604,13 +697,19 @@ public class Gestionar_empleats extends javax.swing.JFrame {
     private javax.swing.JButton ENREREButton;
     private javax.swing.JTextField Telefon;
     private javax.swing.JTextField adreca;
+    private javax.swing.JTextField carrec;
     private javax.swing.JTextField ciutat;
     private javax.swing.JTextField codiPostal1;
     private javax.swing.JTextField cognomsText;
     private javax.swing.JTextField contrasenya;
-    private javax.swing.JFormattedTextField dataNaixement;
+    private com.toedter.calendar.JDateChooser data1;
+    private com.toedter.calendar.JDateChooser data2;
+    private com.toedter.calendar.JDateChooser dataNaixement;
     private javax.swing.JTextField dniText;
     private javax.swing.JTextField email;
+    private javax.swing.JTextField especialitat;
+    private javax.swing.JComboBox<String> horari;
+    private javax.swing.JTextField iban;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -619,7 +718,13 @@ public class Gestionar_empleats extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
