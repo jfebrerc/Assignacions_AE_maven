@@ -225,13 +225,18 @@ public class Registrar_empleat extends javax.swing.JFrame {
         jLabel23.setText("Horari");
 
         Horari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mati", "Tarde", "Nit" }));
+        Horari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HorariActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 801, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(REGISTRARButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,7 +249,7 @@ public class Registrar_empleat extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(240, 240, 240))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(jLabel10))
@@ -449,7 +454,6 @@ public class Registrar_empleat extends javax.swing.JFrame {
                         dataNaixement.getDateFormatString(),adreca.getText(),ciutat.getText(),provincia.getText(),codiPostal.getText(),tipusDocument.getSelectedItem().toString(),sexe.getSelectedItem().toString(),telefon.getText(),
                         idRol,hash,nominaText.getText(),iban.getText(),Horari.getSelectedItem().toString(),especialitat.getText(),carrec.getText(),data1.getDateFormatString(),data2.getDateFormatString()));
                         IO.imprimirTI(((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).toString());
-                        IO.imprimirTI("Se ha registrat un empleat");
                         JOptionPane.showMessageDialog(this, "Se ha donat de alta correctament a " + ((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getNom());
                         Auxiliar.enviarCorreu(Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1).getHash(), Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1).getEmail());
                         Auxiliar.log("Empleat registrat: " + ((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getNom() + " " + ((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getCognom1() + " " + ((Empleat) Arrays.arrayPersones.get(Arrays.arrayPersones.size()-1)).getDNI());
@@ -457,6 +461,8 @@ public class Registrar_empleat extends javax.swing.JFrame {
                         Menu_empleats menuE = new Menu_empleats();
                         menuE.setVisible(true);
                         IO.imprimirTI("-------------------------------------------------------------------------");
+                        IO.imprimirTI("");
+                        IO.imprimirTI(Arrays.arrayPersones.get(0).toString());
                     } catch (Exception error) {
                         IO.imprimirTI("Error al registrar empleat: "+error);
                         Auxiliar.log("Error al registrar un empleat: " + error);
@@ -509,6 +515,10 @@ public class Registrar_empleat extends javax.swing.JFrame {
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
+
+    private void HorariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HorariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HorariActionPerformed
 
     /**
      * @param args the command line arguments
